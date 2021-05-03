@@ -26,7 +26,7 @@ test_path = '/data1/weiheng3_7_2021/statefarm/imgs/test/'
 # test_path = '/data1/weiheng3_7_2021/statefarm/testfolder/c0/'
 
 
-path = "./ensamble.csv"
+path = "./ensamble28.csv"
 with open(path,'w') as f:
     csv_write = csv.writer(f)
     csv_head = ["img","c0","c1","c2","c3","c4","c5","c6","c7","c8","c9"]
@@ -50,7 +50,7 @@ with torch.no_grad():
 
         moboutput = mob(input)
         resoutput = res(input)
-        output = m(moboutput + resoutput)
+        output = m(0.2*moboutput + 0.8*resoutput)
         out_np = output.cpu().numpy()
         for i in range(len(label)):
             pre = out_np[i].tolist()
